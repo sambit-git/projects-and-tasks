@@ -1,7 +1,11 @@
+import { useContext } from "react";
+import { ProjectContext } from "../store/ProjectContextProvider";
+
 import style from "../styles/NoProjects.module.css";
 import image from "../assets/no-projects.png";
 
-const NoProjects = ({ onAddProject }) => {
+const NoProjects = () => {
+  const ctx = useContext(ProjectContext);
   return (
     <>
       <img className={style.image} src={image} />
@@ -9,7 +13,7 @@ const NoProjects = ({ onAddProject }) => {
       <p className={style.hint}>
         Select a new project or get started with a new one
       </p>
-      <button className={style.btn} onClick={onAddProject}>
+      <button className={style.btn} onClick={ctx.showNewProjectForm}>
         Create new project
       </button>
     </>

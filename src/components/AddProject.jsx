@@ -1,10 +1,12 @@
 import Input from "./Input";
 
 import style from "../styles/AddProject.module.css";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Modal from "./Modal";
+import { ProjectContext } from "../store/ProjectContextProvider";
 
-const AddProject = ({ onCancelProject, onProjectSave }) => {
+const AddProject = () => {
+  const ctx = useContext(ProjectContext);
   const title = useRef();
   const description = useRef();
   const dueDate = useRef();
@@ -24,7 +26,7 @@ const AddProject = ({ onCancelProject, onProjectSave }) => {
 
     if (enteredTitle && enteredDescription && enteredDueDate) {
       setValidInput(true);
-      onProjectSave({
+      ctx.addProject({
         title: enteredTitle,
         description: enteredDescription,
         dueDate: enteredDueDate,
@@ -42,7 +44,7 @@ const AddProject = ({ onCancelProject, onProjectSave }) => {
         <button
           className={style.cancel}
           type="button"
-          onClick={onCancelProject}
+          onClick={ctx.hideNewProjectForm}
         >
           Cancel
         </button>

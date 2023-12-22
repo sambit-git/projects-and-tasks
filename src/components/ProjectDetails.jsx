@@ -1,16 +1,15 @@
+import { useContext } from "react";
 import style from "../styles/ProjectDetails.module.css";
 import AddTask from "./AddTask";
 import Tasks from "./Tasks";
+import { ProjectContext } from "../store/ProjectContextProvider";
 
-const ProjectDetails = ({
-  title,
-  description,
-  dueDate,
-  id,
-  tasks,
-  onAddTask,
-  onDelete,
-}) => {
+const ProjectDetails = () => {
+  const ctx = useContext(ProjectContext);
+
+  const { title, description, dueDate, id } = ctx.projects.find(
+    (project) => project.id === ctx.selected
+  );
   return (
     <div className={style["task-content"]}>
       <div className={style.title}>
@@ -18,7 +17,7 @@ const ProjectDetails = ({
         <button
           type="button"
           className={style["btn-delete"]}
-          onClick={() => onDelete(id)}
+          onClick={() => ctx.deleteProject(id)}
         >
           Delete
         </button>
@@ -26,8 +25,8 @@ const ProjectDetails = ({
       <div className={style.dueDate}>{dueDate}</div>
       <pre className={style.descriptions}>{description}</pre>
       <h1>Tasks</h1>
-      <AddTask projectId={id} onAddTask={onAddTask} />
-      <Tasks projectId={id} tasks={tasks} />
+      <AddTask projectId={id} />
+      <Tasks projectId={id} tasks={ctx.tasks} />
     </div>
   );
 };
