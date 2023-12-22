@@ -1,0 +1,22 @@
+.label{
+    text-transform: uppercase;
+}
+
+.input, .textarea{
+    display: block;
+    background-color: #efefef;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 2rem;
+    outline: none;
+    border: 2px solid transparent;
+}
+
+.textarea{
+    resize: none;
+    height: 7rem;
+}
+
+.input:focus, .textarea:focus{
+    border-bottom: 2px solid black;
+}

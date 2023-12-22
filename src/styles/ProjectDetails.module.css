@@ -1,0 +1,32 @@
+.task-content{
+    width: 70%;
+    height: 80%;
+    position: relative;
+}
+
+
+.title{
+    display: flex;
+    justify-content: space-between;
+}
+.dueDate{
+    color: #ccc;
+}
+.descriptions{
+    color: #777;
+    padding: 1.5rem 0;
+    border-bottom: 2px solid #ccc;
+}
+
+.btn-delete{
+    background-color: transparent;
+    padding: 0 1.5rem;
+    border-radius: 4px;
+    color: #777;
+    transition: 0.3s;
+    cursor: pointer;
+    &:hover{
+        color: darkred;
+        transform: scale(1.5);
+    }
+}

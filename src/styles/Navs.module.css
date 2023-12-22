@@ -1,0 +1,28 @@
+.navigation{
+    background-color: #222;
+    color: #eee;
+    padding: 2rem;
+    margin-top: 21%;
+    height: 80%;
+    border-top-right-radius: 1rem;
+}
+.heading{
+    font-weight: bold;
+    font-size: larger;
+}
+.button{
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    background-color: #555;
+    color: #fff;
+    font-size: 1rem;
+}
+.project{
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.selected{
+    background-color: #555;
+}

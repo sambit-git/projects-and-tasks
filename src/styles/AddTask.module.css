@@ -1,0 +1,16 @@
+.task-form{
+    display: flex;
+    gap: 2rem;
+}
+
+.btn-add{
+    padding: 0.7rem 2rem;
+    align-self: flex-start;
+    background-color: transparent;
+    color: #555;
+    transition: 0.3s;
+    &:hover{
+        transform: scale(1.5);
+        color: #000;
+    }
+}

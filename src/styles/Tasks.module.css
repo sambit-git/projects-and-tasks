@@ -1,0 +1,29 @@
+.tasks-list{
+    height: 16rem;
+    background-color: #eee;
+    /* border: 1px solid black; */
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #4CAF50;
+        border-radius: 6px;
+      }
+      
+      /* color on the track */
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+      
+      /* color of the arrow buttons */
+      &::-webkit-scrollbar-button {
+        background-color: transparent;
+      }
+}
+.project-task{
+    padding: 0.5rem;
+    margin: 1rem;
+    box-shadow: 2px 2px 2px #aaa, -2px -2px 2px #eee;
+}

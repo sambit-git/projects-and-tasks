@@ -1,0 +1,19 @@
+.image{
+    height: 10rem;
+}
+
+.heading{
+    font-size: 2rem;
+    font-weight: 900;
+    color: #555;
+}
+.hint{
+    color: #999;
+    margin: 2rem;
+}
+.btn{
+    padding: 0.5rem 1rem;
+    background-color: #333;
+    border-radius: 8px;
+    color: #fff;
+}

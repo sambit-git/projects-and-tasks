@@ -1,0 +1,22 @@
+.form{
+    width: 60%;
+}
+
+.action-buttons{
+    display: flex;
+    /* align-items: flex-end; */
+    justify-content: flex-end;
+    gap: 2rem;
+    button{
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+    }
+}
+
+.cancel{
+    background-color: #ccc;
+}
+.save{
+    color: white;
+    background-color: #333;
+}
