@@ -1,14 +1,15 @@
 import MainContent from "./components/MainContent";
 import Navs from "./components/Navs";
 
-import { ProjectContextProvider } from "./store/ProjectContextProvider";
+import { Provider } from "react-redux";
+import { store } from "./store/project-redux-store";
 
 function App() {
   return (
-    <ProjectContextProvider>
+    <Provider store={store}>
       <Navs />
       <MainContent />
-    </ProjectContextProvider>
+    </Provider>
   );
 }
 

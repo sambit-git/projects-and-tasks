@@ -1,13 +1,14 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import Input from "./Input";
 
+import { useDispatch } from "react-redux";
+
 import style from "../styles/AddTask.module.css";
-import { ProjectContext } from "../store/ProjectContextProvider";
 
 const AddTask = ({ projectId }) => {
   const task = useRef();
 
-  const ctx = useContext(ProjectContext);
+  const dispatch = useDispatch();
 
   const handleEnter = (event) => {
     if (event.key === "Enter") handleAddTask();
@@ -15,7 +16,10 @@ const AddTask = ({ projectId }) => {
 
   const handleAddTask = () => {
     if (task.current.value.trim()) {
-      ctx.addTask({ task: task.current.value, projectId });
+      dispatch({
+        type: "ADD_TASK",
+        payload: { task: task.current.value, projectId },
+      });
       task.current.value = "";
     } else return;
   };

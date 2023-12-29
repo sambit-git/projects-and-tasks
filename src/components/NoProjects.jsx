@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import { ProjectContext } from "../store/ProjectContextProvider";
+import { useDispatch } from "react-redux";
 
 import style from "../styles/NoProjects.module.css";
 import image from "../assets/no-projects.png";
 
 const NoProjects = () => {
-  const ctx = useContext(ProjectContext);
+  const dispatch = useDispatch();
   return (
     <>
       <img className={style.image} src={image} />
@@ -13,7 +12,10 @@ const NoProjects = () => {
       <p className={style.hint}>
         Select a new project or get started with a new one
       </p>
-      <button className={style.btn} onClick={ctx.showNewProjectForm}>
+      <button
+        className={style.btn}
+        onClick={() => dispatch({ type: "SHOW_PROJECT_FORM" })}
+      >
         Create new project
       </button>
     </>

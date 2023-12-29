@@ -1,7 +1,7 @@
-import { createContext, useReducer } from "react";
+import { createStore } from "redux";
 
 const KEY_PROJECTS = "projects";
-const KEY_SELECTED_PROJECT = "selectedProject";
+const KEY_SELECTED_PROJECT = "selected";
 const KEY_TASKS = "tasks";
 
 const loadData = () => {
@@ -35,19 +35,9 @@ const loadData = () => {
   return storedData;
 };
 
-export const ProjectContext = createContext({
-  projects: [],
-  selected: null,
-  tasks: [],
-  showNewProjectForm: () => {},
-  hideNewProjectForm: () => {},
-  addProject: (newProject) => {},
-  selectProject: (id) => {},
-  addTask: (task) => {},
-  deleteProject: (projectId) => {},
-});
+const initialState = loadData();
 
-const projectReducer = (state, action) => {
+const projectReducer = (state = initialState, action) => {
   if (action.type === "SHOW_PROJECT_FORM") {
     localStorage.setItem(KEY_SELECTED_PROJECT, "undefined");
     return { ...state, selected: undefined };
@@ -97,45 +87,7 @@ const projectReducer = (state, action) => {
 
     return newState;
   }
+  return state;
 };
 
-export const ProjectContextProvider = ({ children }) => {
-  const [projectsState, projectsStateDispatch] = useReducer(
-    projectReducer,
-    loadData()
-  );
-
-  const showNewProjectForm = () => {
-    projectsStateDispatch({ type: "SHOW_PROJECT_FORM" });
-  };
-  const hideNewProjectForm = () => {
-    projectsStateDispatch({ type: "HIDE_PROJECT_FORM" });
-  };
-  const addProject = (newProject) => {
-    projectsStateDispatch({ type: "ADD_PROJECT", payload: newProject });
-  };
-  const selectProject = (id) => {
-    projectsStateDispatch({ type: "SELECT_PROJECT", payload: id });
-  };
-  const addTask = (task) => {
-    projectsStateDispatch({ type: "ADD_TASK", payload: task });
-  };
-  const deleteProject = (projectId) => {
-    projectsStateDispatch({ type: "DELETE_PROJECT" });
-  };
-
-  const ctx = {
-    projects: projectsState.projects,
-    selected: projectsState.selected,
-    tasks: projectsState.tasks,
-    showNewProjectForm,
-    hideNewProjectForm,
-    addProject,
-    selectProject,
-    addTask,
-    deleteProject,
-  };
-  return (
-    <ProjectContext.Provider value={ctx}>{children}</ProjectContext.Provider>
-  );
-};
+export const store = createStore(projectReducer);

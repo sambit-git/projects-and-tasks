@@ -1,12 +1,12 @@
 import Input from "./Input";
 
 import style from "../styles/AddProject.module.css";
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Modal from "./Modal";
-import { ProjectContext } from "../store/ProjectContextProvider";
+import { useDispatch } from "react-redux";
 
 const AddProject = () => {
-  const ctx = useContext(ProjectContext);
+  const dispatch = useDispatch();
   const title = useRef();
   const description = useRef();
   const dueDate = useRef();
@@ -26,10 +26,13 @@ const AddProject = () => {
 
     if (enteredTitle && enteredDescription && enteredDueDate) {
       setValidInput(true);
-      ctx.addProject({
-        title: enteredTitle,
-        description: enteredDescription,
-        dueDate: enteredDueDate,
+      dispatch({
+        type: "ADD_PROJECT",
+        payload: {
+          title: enteredTitle,
+          description: enteredDescription,
+          dueDate: enteredDueDate,
+        },
       });
     } else {
       setValidInput(false);
@@ -44,7 +47,7 @@ const AddProject = () => {
         <button
           className={style.cancel}
           type="button"
-          onClick={ctx.hideNewProjectForm}
+          onClick={() => dispatch({ type: "HIDE_PROJECT_FORM" })}
         >
           Cancel
         </button>

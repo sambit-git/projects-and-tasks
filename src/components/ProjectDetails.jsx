@@ -1,14 +1,16 @@
-import { useContext } from "react";
-import style from "../styles/ProjectDetails.module.css";
 import AddTask from "./AddTask";
 import Tasks from "./Tasks";
-import { ProjectContext } from "../store/ProjectContextProvider";
+import { useSelector, useDispatch } from "react-redux";
+import style from "../styles/ProjectDetails.module.css";
 
 const ProjectDetails = () => {
-  const ctx = useContext(ProjectContext);
+  const projects = useSelector((store) => store.projects);
+  const tasks = useSelector((store) => store.tasks);
+  const selected = useSelector((store) => store.selected);
+  const dispatch = useDispatch();
 
-  const { title, description, dueDate, id } = ctx.projects.find(
-    (project) => project.id === ctx.selected
+  const { title, description, dueDate, id } = projects.find(
+    (project) => project.id === selected
   );
   return (
     <div className={style["task-content"]}>
@@ -17,7 +19,7 @@ const ProjectDetails = () => {
         <button
           type="button"
           className={style["btn-delete"]}
-          onClick={() => ctx.deleteProject(id)}
+          onClick={() => dispatch({ type: "DELETE_PROJECT", payload: id })}
         >
           Delete
         </button>
@@ -26,7 +28,7 @@ const ProjectDetails = () => {
       <pre className={style.descriptions}>{description}</pre>
       <h1>Tasks</h1>
       <AddTask projectId={id} />
-      <Tasks projectId={id} tasks={ctx.tasks} />
+      <Tasks projectId={id} tasks={tasks} />
     </div>
   );
 };

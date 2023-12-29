@@ -1,18 +1,17 @@
-import { useContext } from "react";
-import { ProjectContext } from "../store/ProjectContextProvider";
 import AddProject from "./AddProject";
 import NoProjects from "./NoProjects";
 import ProjectDetails from "./ProjectDetails";
+import { useSelector } from "react-redux";
 
 import style from "../styles/MainContent.module.css";
 
 const MainContent = () => {
-  const ctx = useContext(ProjectContext);
+  const selected = useSelector((store) => store.selected);
   return (
     <div className={style["main-content"]}>
-      {ctx.selected === undefined ? (
+      {selected === undefined ? (
         <AddProject />
-      ) : ctx.selected === null ? (
+      ) : selected === null ? (
         <NoProjects />
       ) : (
         <ProjectDetails />
